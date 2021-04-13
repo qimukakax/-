@@ -1,0 +1,18 @@
+.app-container {
+    .main-container {
+        min-height: 100%;
+        margin-left: 210px;
+        position: relative;
+    }
+    .sidebar-container {
+        width: 210px !important;
+        background-color: #8FBC8F;
+        height: 100%;
+        font-size: 0;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        overflow: hidden;
+    }
+}
