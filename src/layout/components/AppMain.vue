@@ -26,11 +26,10 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .app-main {
-  min-height: calc(100vh - 50px);
+  height: calc(100vh - 50px);
   width: 100%;
-  padding: 20px;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 /* fade-transform */
 .fade-transform-leave-active,

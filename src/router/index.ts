@@ -7,10 +7,6 @@ const routes: RouteRecordRaw[] = [
         path: '/',
         redirect: '/home',
         component: Layout,
-        meta: {
-            title: '网站主页',
-            icon: 'el-icon-data-line'
-        },
         children: [
             {
                 path: 'home',

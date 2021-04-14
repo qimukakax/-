@@ -7,6 +7,7 @@
     "dev": "vite"
   },
   "dependencies": {
+    "echarts": "^5.0.2",
     "element-plus": "^1.0.2-beta.28",
     "vue": "^3.0.5"
   },
@@ -16,6 +17,7 @@
     "@vue/compiler-sfc": "^3.0.5",
     "less": "^4.1.1",
     "less-loader": "^8.0.0",
+    "path-to-regexp": "^6.2.0",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.4",
     "typescript": "^4.1.3",

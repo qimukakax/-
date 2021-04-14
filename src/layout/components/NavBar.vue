@@ -1,5 +1,6 @@
 <template>
   <div class="nav-container">
+    <Bread />
     <div class="right-menu">
       <el-dropdown trigger="click">
         <div>
@@ -26,9 +27,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import Bread from "@/components/BreadCrumb.vue";
 
 export default defineComponent({
   name: "NavBar",
+  components: {
+    Bread,
+  },
   setup() {
     function onLogOut() {
       console.log("LogOut");
@@ -48,6 +53,9 @@ export default defineComponent({
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
+  .breadcrumb {
+    float: left;
+  }
   .right-menu {
     float: right;
     margin-right: 30px;
