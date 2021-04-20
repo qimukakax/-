@@ -3,17 +3,26 @@
     <header>近10年农作物主要病虫害发生危害情况的统计和分析</header>
     <div class="charts">
       <section>
-        <Pie />
+        <Pie
+          :chartsData="damageCount.saveCount"
+          :title="'挽回占比'"
+          :seriesName="'农作物种类'"
+        />
       </section>
       <section>
-        <Pie />
+        <Pie
+          :chartsData="damageCount.trueCount"
+          :title="'实际损失'"
+          :seriesName="'农作物种类'"
+        />
       </section>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, Ref } from "vue";
+import { damageCount } from "../untils/const";
 import Pie from "@/components/PieCharts.vue";
 
 export default defineComponent({
@@ -21,13 +30,17 @@ export default defineComponent({
   components: {
     Pie,
   },
+  setup() {
+    return {
+      damageCount,
+    };
+  },
 });
 </script>
 
 <style lang="scss" scoped>
 .home-container {
   display: inline-block;
-  padding: 20px;
   height: 100%;
   display: flex;
   flex-direction: column;

@@ -7,7 +7,19 @@ const { resolve } = require('path')
 export default defineConfig({
   plugins: [vue()],
   server: {
-    open: true
+    open: true,
+    proxy: {
+      '/api/v3': {
+        target: 'https://iam.cn-north-4.myhuaweicloud.com',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, '')
+      },
+      '/api/v1': {
+        target: 'https://4909b78e1e2a4e1b83728649b69752f2.apig.cn-north-4.huaweicloudapis.com',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, '')
+      }
+    }
   },
   resolve: {
     alias: [

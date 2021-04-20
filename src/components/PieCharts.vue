@@ -3,26 +3,56 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, Ref } from "vue";
+import { defineComponent, onMounted, ref, Ref, watch } from "vue";
 import * as echarts from "echarts";
 
 export default defineComponent({
   name: "PieCharts",
-  props: {},
+  props: {
+    chartsData: {
+      type: Array,
+      required: true,
+    },
+    title: {
+      type: String,
+      default: "",
+    },
+    seriesName: {
+      type: String,
+      default: "",
+    },
+  },
   setup(props) {
     const dom: Ref<HTMLElement> = ref({} as HTMLElement);
     let myChart = {} as any;
     const option = {
+      title: {
+        show: true,
+        text: props.title,
+        left: "center",
+      },
       tooltip: {
         trigger: "item",
+        formatter: function (parms: any) {
+          var str =
+            parms.seriesName +
+            "<br/>" +
+            parms.marker +
+            "" +
+            parms.data.name +
+            "&nbsp&nbsp&nbsp" +
+            parms.data.value +
+            "%";
+          return str;
+        },
       },
       legend: {
-        top: "5%",
+        bottom: "5%",
         left: "center",
       },
       series: [
         {
-          name: "访问来源",
+          name: props.seriesName,
           type: "pie",
           radius: ["40%", "70%"],
           avoidLabelOverlap: false,
@@ -45,20 +75,24 @@ export default defineComponent({
           labelLine: {
             show: false,
           },
-          data: [
-            { value: 1048, name: "搜索引擎" },
-            { value: 735, name: "直接访问" },
-            { value: 580, name: "邮件营销" },
-            { value: 484, name: "联盟广告" },
-            { value: 300, name: "视频广告" },
-          ],
+          data: props.chartsData,
         },
       ],
     };
     onMounted(() => {
       myChart = echarts.init(dom.value);
       option && myChart.setOption(option);
+      window.addEventListener("resize", function () {
+        myChart.resize();
+      });
     });
+    watch(
+      () => props.chartsData,
+      () => {
+        option.series[0].data = props.chartsData;
+        myChart.setOption(option);
+      }
+    );
     return {
       dom,
     };

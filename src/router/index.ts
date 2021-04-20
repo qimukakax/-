@@ -18,9 +18,28 @@ const routes: RouteRecordRaw[] = [
                 component: () => import('@/views/home.vue')
             }
         ]
+    },
+    {
+        path: '/',
+        component: Layout,
+        children: [
+            {
+                path: 'upload',
+                name: 'upload',
+                meta: {
+                    title: '智能识别',
+                    icon: 'el-icon-upload2'
+                },
+                component: () => import('@/views/identify.vue')
+            }
+        ]
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: () => import('@/views/login.vue')
     }
 ]
-
 const router = createRouter({
     history: createWebHistory(),
     routes

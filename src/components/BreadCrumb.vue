@@ -32,7 +32,7 @@ export default defineComponent({
     getList();
     function pathCompile(path: string) {
       const { params } = route;
-      var toPath = pathToRegexp.compile(path);
+      var toPath = (pathToRegexp as any).compile(path);
       return toPath(params);
     }
     function handleLink(item: any) {
