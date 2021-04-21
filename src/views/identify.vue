@@ -42,6 +42,14 @@
         />
       </div>
     </el-card>
+    <el-card class="box-card">
+      <template #header>
+        <div class="card-header">
+          <span>病虫害特点及其防治</span>
+        </div>
+      </template>
+      <div class="control_box">123</div>
+    </el-card>
   </div>
 </template>
 
@@ -108,7 +116,7 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   .box-card {
-    width: 45%;
+    width: 30%;
     height: 70%;
   }
   .info-box {
@@ -116,6 +124,10 @@ export default defineComponent({
     height: 400px;
     margin-left: 50%;
     transform: translate(-50%);
+  }
+  .control_box {
+    width: 100%;
+    height: 100%;
   }
   .upload-box {
     .primary-button {

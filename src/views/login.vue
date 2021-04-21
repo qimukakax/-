@@ -1,6 +1,7 @@
 <template>
   <div class="login-container">
     <div class="form-box">
+      <div class="img"></div>
       <div class="title">农业病虫害上报与分析网站</div>
       <el-form
         ref="form"
@@ -94,11 +95,21 @@ export default defineComponent({
     top: 100px;
     right: 30px;
     background: #fff;
+    display: block;
     border-radius: 14px;
     .button {
       width: 240px;
       margin-left: 50%;
       transform: translate(-50%);
+    }
+    .img {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 14px;
+      left: 50px;
+      background: url("https://th.bing.com/th/id/R79b324ff281621cfd347318af782b5ca?rik=HyFoFVTsV74uPg&riu=http%3a%2f%2fpic.gerenjianli.com%2fxiaohui2046%2fb679.jpg&ehk=haTUlxJuVGeuE9ikGaxjO8llxxYUXE6%2bSAXN66iGhZA%3d&risl=&pid=ImgRaw");
+      background-size: cover;
     }
     .title {
       width: 100%;
