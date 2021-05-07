@@ -18,6 +18,11 @@ export default defineConfig({
         target: 'https://4909b78e1e2a4e1b83728649b69752f2.apig.cn-north-4.huaweicloudapis.com',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, '')
+      },
+      '/api/local': {
+        target: 'http://10.4.156.88:8000',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, '')
       }
     }
   },

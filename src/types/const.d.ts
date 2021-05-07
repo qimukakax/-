@@ -12,3 +12,9 @@ export interface ReportResponse {
     predicted_label: string
     scores: string[][]
 }
+
+export interface CommonData {
+    name: string
+    status: string
+    solve: string
+}

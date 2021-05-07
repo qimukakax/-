@@ -48,7 +48,11 @@
           <span>病虫害特点及其防治</span>
         </div>
       </template>
-      <div class="control_box">123</div>
+      <div class="control_box" v-loading="isReport">
+        <section><span>名称:</span>{{ commonData.name }}</section>
+        <section><span>危害:</span>{{ commonData.status }}</section>
+        <section><span>防治:</span>{{ commonData.solve }}</section>
+      </div>
     </el-card>
   </div>
 </template>
@@ -57,7 +61,8 @@
 import { defineComponent, ref, Ref } from "vue";
 import Pie from "@/components/PieCharts.vue";
 import { reportImg } from "@/api/index";
-import { PieCharts } from "@/types/const";
+import { CommonData, PieCharts } from "@/types/const";
+import { commonData_H, commonData_L } from "@/untils/const";
 import { transformArrToCharts } from "@/untils/tools";
 import { ElMessage } from "element-plus";
 
@@ -68,6 +73,11 @@ export default defineComponent({
   },
   setup(props, context) {
     const imgFile: Ref<File> = ref({} as File);
+    const commonData: Ref<CommonData> = ref({
+      name: "-",
+      status: "-",
+      solve: "-",
+    });
     const imageUrl: Ref<string> = ref("");
     const charts: Ref<PieCharts[]> = ref([]);
     const isReport: Ref<boolean> = ref(false);
@@ -95,6 +105,11 @@ export default defineComponent({
       params.append("images", imgFile.value);
       reportImg(params).then((res: any) => {
         isReport.value = false;
+        if (res.predicted_label === "葡萄轮斑病") {
+          commonData.value = commonData_L;
+        } else {
+          commonData.value = commonData_H;
+        }
         charts.value = transformArrToCharts(res.scores);
       });
     }
@@ -103,6 +118,7 @@ export default defineComponent({
       onReport,
       isReport,
       imageUrl,
+      commonData,
       handleAvatarSuccess,
     };
   },
@@ -128,6 +144,13 @@ export default defineComponent({
   .control_box {
     width: 100%;
     height: 100%;
+    overflow: auto;
+    section {
+      line-height: 2;
+      span {
+        font-weight: bold;
+      }
+    }
   }
   .upload-box {
     .primary-button {

@@ -29,3 +29,14 @@ export interface Token {
     }
         
 }
+
+export interface User {
+    username: string
+    password: string
+    age: number
+    address: string
+}
+export interface Login {
+    username: string
+    password: string
+}
